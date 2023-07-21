@@ -50,8 +50,6 @@ export default class App extends Component {
                         <Route exact path='/Sports' element={<News setProgress={this.setProgress} key="sports" apiKey={this.apiKey} category="sports" country={this.country} pageSize={this.pageSize} />} />
                         <Route exact path='/Technology' element={<News setProgress={this.setProgress} key="technology" apiKey={this.apiKey} category="technology" country={this.country} pageSize={this.pageSize} />} />
                     </Routes>
-                    
-
                 </Router>
             </>
         )
