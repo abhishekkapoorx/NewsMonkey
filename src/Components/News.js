@@ -7,9 +7,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 export default function News (props) {
 
     const [articles, setarticles] = useState([])
+    // let articles = props.articles;
+    // let setarticles = ()=> props.setArticles;
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
-    // const [totalArticles, setTotalArticles] = useState(0)
     const [hasMore, setHasMore] = useState(false)
 
 
@@ -52,13 +53,14 @@ export default function News (props) {
     useEffect(() => {
         fetchArticle()
         console.log("in useEffect")
+        // eslint-disable-next-line
     }, [])
     
 
 
     return (
         <div className='container my-5'>
-            <h3 className='display-3 text-center my-5'>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h3>
+            <h3 className='display-3 text-center my-5'>{props.country} NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h3>
 
             {loading && <Loading />}
 
@@ -73,7 +75,7 @@ export default function News (props) {
                     <div className="row">
                             {articles.map((element) => {
                                 return <div className="col-md-4 my-2" key={element.url?element.url:""}>
-                                    <NewsItem author={element.author?element.author:"unknown"} title={element.title?element.title:""} description={element.description?element.description:""} source={element.source.name} imageUrl={element.urlToImage?element.urlToImage:"https://techcrunch.com/wp-content/uploads/2022/02/drawkit-illustrations-8iIUDnRq87o-unsplash-1.jpg?resize=1200,675"} newsUrl={element.url?element.url:""} publishedAt={element.publishedAt?element.publishedAt:""} />
+                                    <NewsItem author={element.author!==null?element.author:"unknown"} title={element.title?element.title:""} description={element.description?element.description:""} source={element.source.name} imageUrl={element.urlToImage?element.urlToImage:"https://techcrunch.com/wp-content/uploads/2022/02/drawkit-illustrations-8iIUDnRq87o-unsplash-1.jpg?resize=1200,675"} newsUrl={element.url?element.url:""} publishedAt={element.publishedAt?element.publishedAt:""} />
                                 </div>
                             })}
                     </div>
